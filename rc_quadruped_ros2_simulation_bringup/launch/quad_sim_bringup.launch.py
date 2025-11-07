@@ -74,6 +74,7 @@ def launch_setup(context, *args, **kwargs):
         arguments=["unitree_guide_controller", "--controller-manager", "/controller_manager"],
     )
 
+    """---------------------launch all of the nodes---------------------"""
     return [
         rviz,
         Node(
