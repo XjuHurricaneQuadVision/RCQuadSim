@@ -10,7 +10,6 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
-
 def launch_setup(context, *args, **kwargs):
     
     """--------------------context configurations---------------------"""
@@ -104,7 +103,6 @@ def launch_setup(context, *args, **kwargs):
             )
         ),
     ]
-
 
 def generate_launch_description():
     pkg_description = DeclareLaunchArgument(
