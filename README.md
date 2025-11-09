@@ -34,9 +34,15 @@ colcon build --symlink-install
 
 #### 1.4 Run
 
+- 启动仿真环境
 ```bash
 source install/setup.bash
 ros2 launch rc_quadruped_ros2_simulation_bringup quad_sim_bringup.launch.py
+```
+- 启动键盘控制
+```bash
+source install/setup.bash
+ros2 run keyboard_input keyboard_input
 ```
 
 
