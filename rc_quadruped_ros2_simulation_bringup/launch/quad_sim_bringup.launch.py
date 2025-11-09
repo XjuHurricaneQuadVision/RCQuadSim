@@ -141,5 +141,6 @@ def generate_launch_description():
     return LaunchDescription([
         pkg_description,
         height,
+        world_file,
         OpaqueFunction(function=launch_setup),
     ])
