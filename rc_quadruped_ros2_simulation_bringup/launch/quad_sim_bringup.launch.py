@@ -134,13 +134,12 @@ def generate_launch_description():
 
     world_file = DeclareLaunchArgument(
         'world_file',
-        default_value='empty.sdf',
+        default_value='rmuc_2024_world.sdf',
         description='Gazebo world file to load'
     )
 
     return LaunchDescription([
         pkg_description,
         height,
-        world_file,
         OpaqueFunction(function=launch_setup),
     ])
