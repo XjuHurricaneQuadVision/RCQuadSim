@@ -30,7 +30,7 @@ def launch_setup(context, *args, **kwargs):
     package_description = context.launch_configurations['pkg_description']
     init_height = context.launch_configurations['height']
     world_file = context.launch_configurations['world_file']
-    default_sdf_path = os.path.join(get_package_share_directory('rc_quadruped_ros2_simulation_bringup'), 'resources','worlds', world_file + '.sdf')
+    default_sdf_path = os.path.join(get_package_share_directory('rc_quadruped_ros2_simulation_bringup'), 'resources','worlds',      world_file + '.sdf')
 
     """---------------------------file path---------------------------"""
     pkg_path = os.path.join(get_package_share_directory(package_description))
@@ -54,6 +54,22 @@ def launch_setup(context, *args, **kwargs):
         arguments=['-topic', 'robot_description', '-name',
                    'robot', '-allow_renaming', 'true', '-z', init_height],
     )
+    
+    gz_spawn_entity = Node(
+package='ros_gz_sim',
+    executable='create',
+    output='screen',
+    arguments=[
+        '-topic', 'robot_description',
+        '-name', 'robot',
+        '-allow_renaming', 'true',
+        '-x', '1.5',     # ← 新增
+        '-y', '-2.0',    # ← 新增
+        '-z', init_height,
+        '-Y', '1.57'     # ← 新增 (yaw)
+    ],
+)
+
 
     robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -114,6 +130,7 @@ def launch_setup(context, *args, **kwargs):
                                         'launch',
                                         'gz_sim.launch.py'])]),
             launch_arguments=[('gz_args', [' -r -v 4 ', default_sdf_path])]),
+        
         robot_state_publisher,
         gz_spawn_entity,
         RegisterEventHandler(
