@@ -46,30 +46,14 @@ def launch_setup(context, *args, **kwargs):
         output='screen',
         arguments=["-d", rviz_config_file]
     )
-
+    
     gz_spawn_entity = Node(
         package='ros_gz_sim',
         executable='create',
         output='screen',
-        arguments=['-topic', 'robot_description', '-name',
-                   'robot', '-allow_renaming', 'true', '-z', init_height],
-    )
-    
-    gz_spawn_entity = Node(
-package='ros_gz_sim',
-    executable='create',
-    output='screen',
-    arguments=[
-        '-topic', 'robot_description',
-        '-name', 'robot',
-        '-allow_renaming', 'true',
-        '-x', '1.5',     # ← 新增
-        '-y', '-2.0',    # ← 新增
-        '-z', init_height,
-        '-Y', '1.57'     # ← 新增 (yaw)
-    ],
-)
-
+        arguments=['-topic', 'robot_description','-name', 'robot','-allow_renaming', 'true',
+        '-x', '1.5','-y', '-2.0','-z', init_height,'-Y', '1.57'  ],
+        )
 
     robot_state_publisher = Node(
         package='robot_state_publisher',

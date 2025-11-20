@@ -86,10 +86,6 @@ def launch_setup(context, *args, **kwargs):
                                        'launch',
                                        'gz_sim.launch.py'])]),
             launch_arguments=[('gz_args', [' -r -v 4 ', default_sdf_path])]),
-        
-        
-        
-
         controller_launch
     ]
 
